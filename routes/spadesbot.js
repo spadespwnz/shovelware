@@ -112,7 +112,7 @@ router.use('/dashboard', function(req,res,next){
 
 		db.collection('overlay').find( {"user":user}).toArray(function(err, cursor) {
 			if (err) {
-				res.render('pages/overlay_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: null});
+				res.render('pages/spadesbot_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: null});
 			}
 			else{
 				if (cursor[0]) {
@@ -154,7 +154,7 @@ router.use('/dashboard', function(req,res,next){
 	else{
 
 		url_code = null;
-		res.render('pages/overlay_dashboard', {client_id: bot_id, logged_in: 'false' ,user: user, redirect: process.env.REDIRECT_URL, url_code: url_code});
+		res.render('pages/spadesbot_dashboard', {client_id: bot_id, logged_in: 'false' ,user: user, redirect: process.env.REDIRECT_URL, url_code: url_code});
 	}
 
 });
@@ -164,7 +164,7 @@ router.get('/dashboard', function(req, res) {
 	var db = req.db;
 	var code = req.url_code;
 	var user = req.user;
-	res.render('pages/overlay_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: code});
+	res.render('pages/spadesbot_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: code});
 
 });
 
@@ -207,7 +207,7 @@ router.post('/dashboard/toggle_command', function(req, res) {
 			if (err){
 				console.log(err);
 				res.send({success: false});
-				
+
 				return
 			}
 			else{

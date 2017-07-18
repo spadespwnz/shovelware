@@ -47,7 +47,7 @@
 		$(document).ready(function(){
 
 			function setUrlField(code){
-				$('#overlay_code_field').val(window.location.protocol+"//"+window.location.host+"/overlay/source/"+code);
+				$('#overlay_code_field').val(window.location.protocol+"//"+window.location.host+"/spadesbot/source/"+code);
 			}
 			$('#overlay_code_field').click(function(){
 				this.select();
@@ -56,7 +56,7 @@
 			$('#disable_polls').click(function(){
 				$.ajax({
 					type: "POST",
-					url: "../overlay/dashboard/toggle_command",
+					url: "../spadesbot/dashboard/toggle_command",
 					data: {command: "!poll", option: false},
 					success: function(msg){
 						if (msg.success == true){
@@ -71,7 +71,7 @@
 			$('#enable_polls').click(function(){
 				$.ajax({
 					type: "POST",
-					url: "../overlay/dashboard/toggle_command",
+					url: "../spadesbot/dashboard/toggle_command",
 					data: {command: "!poll", option: true},
 					success: function(msg){
 						if (msg.success == true){
@@ -112,7 +112,7 @@
 			$('#gen_code').click(function(){
 				$.ajax({
 						type: "GET",
-						url: "../../overlay/dashboard/generate_code",
+						url: "../../spadesbot/dashboard/generate_code",
 
 						success: function(msg){
 
@@ -158,7 +158,7 @@
 
 					$.ajax({
 						type: "POST",
-						url: "../overlay/dashboard/auth",
+						url: "../spadesbot/dashboard/auth",
 						data: {code: user_code},
 						success: function(msg){
 							if (msg.success == true){

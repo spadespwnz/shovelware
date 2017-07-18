@@ -43,8 +43,7 @@ function setupBot(){
     var user = userstate.username.toLowerCase();
     if (message.charAt(0) == '!'){
       var message_parts = message.split(' ');
-      console.log(overlay_users[channel_cleaned]);
-      console.log(overlay_users[channel_cleaned].commands[message_parts[0]]);
+      if (!overlay_users[channel_cleaned].commands[message_parts[0]]) return;
       if (overlay_users[channel_cleaned].commands[message_parts[0]].active == true){
 
         doCommand(message_parts[0], message, overlay_users[channel_cleaned].commands[message_parts[0]].options, channel, user)
@@ -124,12 +123,12 @@ module.exports = {
 
 		})
     function connectBot(){
-      console.log(overlay_users)
+
 
       for (var key in overlay_users){
         channels.push("#"+key);
       }
-      console.log("Channels: "+channels);
+
       tmi_options = {
       	options:{
       		debug: true
@@ -162,6 +161,6 @@ module.exports = {
   toggle_command: function(user, command, option){
 
     overlay_users[user].commands[command].active = (option == 'true');
-    console.log(  overlay_users[user] );
+
   }
 }

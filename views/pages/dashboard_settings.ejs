@@ -15,7 +15,7 @@
 
 	</style>
 
-		twitter: 
+		twitter:
 		<input type="text" readonly id="twitter_field"></input>
 		<div id="twitter_uneditable">
 			<button id="edit_twitter">Edit</button>
@@ -45,18 +45,18 @@
 				var twitter = document.getElementById("twitter_field").value;
 				$.ajax({
 					type: "POST",
-					url: "../../overlay/dashboard/set_twitter",
+					url: "../../spadesbot/dashboard/set_twitter",
 					data: {twitter: twitter},
 
 					success: function(msg){
 
 						if (msg.success == true){
 
-							
-							alert("SET")
-							
 
-						
+							alert("SET")
+
+
+
 						}
 						else{
 							alert("FAILED")
@@ -68,4 +68,3 @@
 
 	</script>
 </html>
-
