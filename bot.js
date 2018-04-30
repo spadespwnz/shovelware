@@ -25,7 +25,7 @@ var current_polls = [];
 
 function pingSite() {
 		http.get({
-		host: 'www.spades.tech',
+		host: 'www.spades.cloud',
 		path: '/',
 	}, function(res) {
 		var body = '';

@@ -176,7 +176,6 @@ router.get('/dashboard/settings', function(req, res) {
 	db.collection('overlay').find({ 'user': user }).forEach(function (doc){
 		res.render('pages/dashboard_settings', {social: doc.social});
 	})
-	//res.render('pages/overlay_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: code});
 
 });
 
@@ -194,7 +193,6 @@ router.post('/dashboard/set_twitter', function(req, res) {
 				return res.send({success: true});
 			}
 		})
-	//res.render('pages/overlay_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: code});
 });
 router.post('/dashboard/toggle_command', function(req, res) {
 	var db = req.db;
@@ -215,7 +213,6 @@ router.post('/dashboard/toggle_command', function(req, res) {
 				return res.send({success: true});
 			}
 		})
-	//res.render('pages/overlay_dashboard', {client_id: bot_id, logged_in: 'true' ,user: user, redirect: process.env.REDIRECT_URL, url_code: code});
 });
 
 
@@ -259,15 +256,6 @@ router.get('/dashboard/generate_code', function(req,res){
 				return res.send({success: true, new_code: new_code});
 			}
 		})
-
-		/*dbutils.db_upsert(db,'overlay',{'user':user},{$set:{'url':new_code}}, function(db_res) {
-			if (db_res.fail) {
-				res.send({success: false});
-				return
-			}
-
-			return res.send({success: true, new_code: new_code});
-		});*/
 
 	}
 	else{
