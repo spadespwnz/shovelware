@@ -168,5 +168,6 @@ module.exports = {
 		overlay_users[user] = {};
 		overlay_users[user].url = url;
 		overlay_users[user].commands = commands;
+		bot.join(user)
 	}
 }
