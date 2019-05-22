@@ -19,7 +19,7 @@ var commands_default = {
 	"!vote":{active: true, options: {}}
 };
 router.get('/', function(req,res){
-
+	res.redirect('/spadesbot/dashboard')
 });
 router.post('/dashboard/auth', function(req,res){
 	var db = req.db;
