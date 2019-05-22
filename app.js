@@ -1,3 +1,21 @@
+var noBot = false;
+process.argv.forEach(function (arg){
+	if (arg.indexOf("=")<0){
+		return;
+	} else{
+		toks = arg.split("=");
+		if (toks.length==2){
+			if (toks[0] == "bot"){
+				if (toks[1] == "false"){
+					noBot = true;
+				}
+			}
+		}
+	}
+})
+
+
+
 var express = require('express');
 app = express();
 require('dotenv').config();
@@ -16,10 +34,16 @@ var jwt = require('jsonwebtoken');
 var dbutils = require('./utils/dbutils');
 var busboy = require('connect-busboy');
 var cors = require('cors');
-var bot = require('./bot.js');
+
+if (noBot == false){
+	var bot = require('./bot.js');
+}
+
 MongoClient.connect(url, function(err,db){
 	data_base = db;
-	bot.start_bot(data_base);
+	if (noBot == false){
+		bot.start_bot(data_base);
+	}
 });
 app.use(busboy());
 app.use(session({
@@ -36,7 +60,9 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('jwt_secret', process.env.JWT_SECRET || 'randosecretkey');
 app.use(cors({credentials: true, origin: true}));
-app.set('bot', bot);
+if (noBot == false){
+	app.set('bot', bot);
+}
 app.use(function(req,res,next){
     req.db = data_base;
     next();
@@ -57,7 +83,9 @@ fs.readdirSync(__dirname+'/routes').forEach(function(file){
 });
 
 var overlay_controller = require('./socket_controllers/overlay');
-bot.socket_connect();
+if (noBot == false){
+	bot.socket_connect();
+}
 
 
 var overlay = io

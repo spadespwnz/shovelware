@@ -133,13 +133,16 @@ router.use('/dashboard', function(req,res,next){
 				else{
 					console.log("no, we are here");
 					var new_code = new uid();
-					db.collection('overlay').update({'user': user}, { $set: {'url': new_code}, $set:{"commands": commands_default }}, {upsert:true}, function(err, records){
+					console.log("Gened Code:");
+					console.log(new_code);
+					db.collection('overlay').update({'user': user}, { $set: {'url': new_code, "commands": commands_default }}, {upsert:true}, function(err, records){
 						if (err){
 							console.log(err);
 							return
 						}
 						else{
-
+							var bot = res.app.get('bot');
+							bot.add_new_user(user, new_code, commands_default);
 						}
 					})
 					req.url_code = new_code;
@@ -215,8 +218,6 @@ router.post('/dashboard/toggle_command', function(req, res) {
 		})
 });
 
-
-
 router.get('/dashboard/polls',function(req,res){
 	var db = req.db;
 	var user = req.user;
@@ -242,6 +243,7 @@ router.get('/remove', function(req,res){
 	res.send("deleted DB")
 });
 router.get('/dashboard/generate_code', function(req,res){
+	console.log("Generating new code");
 	var db = req.db;
 	var sessionID = req.sessionID;
 	if (sessionMap[sessionID]){

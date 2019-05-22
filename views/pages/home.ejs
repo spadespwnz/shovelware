@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/main/home.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="page_container">
+      <div class="content_container">
+        <div class="imageBar">
+
+          <img src="/img/ss/spadestools-1.png"></img>
+
+        </div>
+        <div class="pane">
+            <div id="links_bar" class="fluid">
+              <ul>
+                <li id="aboutLink"><span>About</span></li>
+                <li id="projectsLink"><span>Projects</span></li>
+                <li id="futureLink"><span>Future</span></li>
+                <li id="contactLink"><span>Contact</span></li>
+              </ul>
+            </div>
+        </div>
+        <div class="imageBar">
+          <img src="/img/ss/midi-1.jpg"></img>
+          <img src="/img/ss/spadestools-3.gif"></img>
+        </div>
+        <div class="content">
+
+          <div class="content_section" id="about_content">
+            <div class="section_info">
+            aboutStuff
+            </div>
+            <div class="section_title">
+            about
+            </div>
+          </div>
+
+          <div class="content_section" id="projects_content">
+            <div class="section_info">
+              <div class="project">
+                <p class="project_title">SPaDeS-Tools for Sonic Adventure 2</p>
+                <div class="project_content">
+                  <div class="left_content">
+                    <img src="/img/ss/spadestools-1.png"></img>
+                    <img src="/img/ss/spadestools-2.gif"></img>
+                    <img src="/img/ss/spadestools-5.gif"></img>
+                    <img src="/img/ss/spadestools-6.gif"></img>
+                    <img src="/img/ss/spadestools-7.gif"></img>
+                    <img src="/img/ss/spadestools-4.gif"></img>
+                    <img src="/img/ss/spadestools-3.gif"></img>
+                  </div>
+                  <div class="right_content">
+                    This is a set of tools designed to add features allowing "speedrunners" to better practice tricks and segments of gameplay and improve their play.
+                    This app is written in GoLang, and works by modifiying the memory of the game.
+
+                    <h3>Tools:</h3>
+                    <b>Reget Connection</b> - Reconnect the app to the game, for example if you need to relaunch the game.</br></br>
+                    <b>99 Lives</b> - Set remaining lives to 99.</br></br>
+                    <b>Save Engine</b> - Create "save states" of the player's location and physics data by button tap (or key tap). Then with another button tap, the location and
+                    physics data will be reinjected back into the game, causing the player to continue movement perfectly from when the state was saved. Supports up to 9 save states, which can be rotated
+                    through by a botton press. This is useful for mastering difficult tricks and sections by allowing one to reattempt without delay, and have multiple attempts start with the exact same
+                    location and momentum.<br></br>
+                    <b>Ghost Mod</b> - This tool allows the player to create "ghosts" of their fastest times through a stage. The player can then race against the ghost, which will appear in the game and follow
+                    the exact movements the player used during the recording. The player can create multiple ghost "packs", and each pack can store 1 recording per level. This allows the user to have different
+                    packs for different objectives, such as "A rank" or simply "Mission 3". This tool includes a "Speedrun Mode", which allows the player to race against a ghost of an entire game playthrough,
+                    instead of just a single level. Another Feature for Ghost Mod is a "Replay Mode", where instead of creating a clone to race against, the player instead becomes the ghost, and can watch
+                    the replay complete the level. Lastly, Replay Mode has support for sharing Ghost Packs, by uploading and downloading the packs to a server, done through the app.<br>
+                    <b>Rewinder</b> - This feature allows you to rewind your gameplay, and restart from exactly where you want. You can change how big the rewind jumps, ranging from rewinding frame by frame,
+                    or much larger jumps.<br></br>
+                    <b>Race Mode</b> - This is a tool that lets players see eachother in their own game. One player must download and run the Server tool, then other players can join. All players connected to
+                    the same room on the server will be able to see eachother. This allows players to race eachother through the game.
+                    <br></br>
+                    <b>Code:</b><br>
+                    <a href="https://github.com/spadespwnz/spades-tools">Tools</a><br>
+                    <a href="https://github.com/spadespwnz/race-server/blob/master/src/app/main.go">Race Server</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Arduino Midi Project</p>
+              <div class="project_content">
+                  <div class="left_content">
+                    <iframe width="500px" height="200px" src="https://www.youtube.com/embed/tP3PCeuBgHY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <img src="/img/ss/midi-1.jpg"></img>
+                    <img src="/img/ss/midi-2.jpg"></img>
+                    <img src="/img/ss/midi-3.jpg"></img>
+                    <img src="/img/ss/midi-4.jpg"></img>
+                  </div>
+
+                  <div class="right_content">
+                    This goal of this project was to play a song using Peizo buzzers connected to a Arduino microcontroller. This is achieved through a GoLang app
+                    parsing a midi file and sending the notes over wi-fi to the arduino.</br></br>
+                    <b>Sending the notes</b> - The Arduino has a wi-fi microchip connected that runs a server on a local network.
+                    A client connects to this server and sends the notes to be played to the Arduino.
+                    The client is Midi parser written in GoLang, which determines what notes to be sent, and when to send them. The Arduino tells
+                    the client how many speakers are attached, as to not try and play to many notes simultaneously.</br></br>
+                    <b>Playing the notes</b> - The Arduino recieves the notes as a frequency, a volume, and a speaker number.
+                    Volume control is outside of the scope of this project, and is used to simply determine if the note is ON or OFF.
+                    The built-in Arduino software is only capable of playing one Tone at a time; to be able to create notes from multiple buzzers simultaneously
+                    a custom method of generating the correct tone must be used. This is achieved by using internal timers and interupts to power and unpower
+                    the pins that the buzzers are attached to. The interupts for each pin a buzzer is attached to trigger at the frequency of the note being played on that buzzer, and toggle
+                    on and off. This causes the buzzer to play the correct tone. This method allows for each internal timer to have it's own note playing, and with some modification a single
+                    timer should be able to handle multple buzzers.</br></br>
+                    <b>Lights</b> - A simple LED visualization was added, that works by having each LED represent a buzzer, and the light for a speaker will be on during the time the speakers
+                    is playing a note.</br></br>
+                    <b>Possible Further Work</b> - There are a few ways in which this project could be expanded. One would be to add volume contorl to each individual note and to the system as a whole.
+                    Individual note volume can be controlled by clever use of PWM, by having the PWM cycle's repeat at a higher frequency than ear can hear. This allows for controlling volume by changing
+                    the duty cycle. Another method of improvement would be wiring the buzzers through a multiplexer as to use less pins on the microcontroller.</br></br>
+                    <b>Related Project</b> - While working on this, I decided it would be an interesting experiment to try and use a single buzzer to create 2 notes at the same time. This is possible by
+                    changing the method used to play notes on the buzzer. Instead of turning the pin on and off at the frequency of the note, the pin must use PWM and have the duty cycle follow the wave
+                    of the note, where the peak of the wave would be 100% duty cycle. Multiple notes can then be played at the same time by calculating the sum of the 2 waves, and having the duty cycle
+                    follow that wave. This method has a few issues and limitation, such as the volume of the buzzer being considerably more quiet because not as much power is sent to the buzzer. Another issue
+                    comes from the fact that the microcontroller limited in how often it can update the duty cycle.</br></br>
+                    <b>Code:</b></br>
+                    <a href="https://github.com/spadespwnz/midi-parser/blob/master/main.go">GoLang Midi Parser / Note Sender </a></br>
+                    <a href="https://github.com/spadespwnz/arduino-code/blob/master/Doorbell/Doorbell.ino">Arduino Player</a></br>
+                    <a href="https://github.com/spadespwnz/arduino-code/blob/master/NoteTest/NoteTest.ino">Multiple Notes from One Buzzer</a></br>
+
+                  </div>
+              </div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Unity Projects</p>
+                <div class="project_content">
+                  <div class="left_content">
+                    <iframe width="500px" height="200px" src="https://www.youtube.com/embed/Ej182zp1k-M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+                  <div class="right_content">
+                    <b>Project One: Some Unity Experience</b></br></br>
+                    With my first project working with Unity, my goal was to understand the process of Modeling objects, adding them to the game, and add simple functionality to them.
+                    The first task was to use "MakeHuman" to create a Human Model, use Blender to add animation to the model, and import this model into Unity to learn how to handle playing animations
+                    within the game engine. The next task involved adding some controls such as camera controls, character movement and actions, as well as having objects attached to the character move correctly
+                    through the animations. Once the character could move, roll, and swing a sword, the next goal was to create an elevator in Blender, and have the character activate and ride it by stepping on it.
+                    From there I proceeded to add direct interaction with objects, such as a lever that controls a bridge. The next goal was creating more complex interactions such as opening a chest to spawn a key, then
+                    using the key to open a door. From here I went back to Blender to learn a little bit more about 3D modeling and create a cave, a simple building and ladder. </br>
+                    This was the extent of the project, simply gaining a little understanding of how to use the Unity engine.
+                    </br></br></br>
+
+                    <b>Project Two (WIP): 2D RPG</b></br></br>
+                    This project is a 2D game slowly undergoing developement. The focus is on a fun and unique combat system with fast paced and complex mechanics.
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Various Webapps including some Twitch-bot Integration</p>
+              <div class="project_content">some stuffff</div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Twitch Voting Overlay</p>
+              <div class="project_content">some stuffff</div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Sonic Adventure 2 Song-Changer tool</p>
+              <div class="project_content">
+                some stuffff<br>
+                some stuffff<br>
+                some stuffff<br>
+                some stuffff<br>
+                some stuffff<br>
+                some stuffff<br>
+                some stuffff<br>
+                some stuffff<br>
+              </div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Useless Discord Bot</p>
+              <div class="project_content">some stuffff</div>
+              </div>
+
+              <div class="project">
+              <p class="project_title">Jogging Tracker App</p>
+              <div class="project_content">some stuffff</div>
+              </div>
+
+            </div>
+            <div class="section_title">
+            projects
+            </div>
+          </div>
+
+          <div class="content_section" id="future_content">
+            <div class="section_info">
+            While continuing to advance my programming skills, my plans are to focus learning on writing tests, understanding security risks and solutions, as well as gaining deeper knowledge about the tools and frameworks commonly used for back-end web developement such as
+            Docker, Search Engines and Web Servers such as Nginx and Apache . Future projects will be focused on getting accustomed to using specific tools as well as targetting practice where my knowledge is lacking.
+            </div>
+            <div class="section_title">
+            future
+            </div>
+          </div>
+
+          <div class="content_section" id="contact_content">
+            <div class="section_info">
+            Nathan Brown</br>
+            spades@live.no</br>
+            <a href="https://github.com/spadespwnz">Github</a></br>
+            <a href="https://www.linkedin.com/in/nathan-brown-72317a165/">LinkedIn</a></br>
+            </div>
+            <div class="section_title">
+            contact
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/main/home.js"></script>
+  </body>
+</html>

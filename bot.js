@@ -116,6 +116,7 @@ module.exports = {
             overlay_users[docs[doc].user] = {};
             overlay_users[docs[doc].user].url = docs[doc].url;
             overlay_users[docs[doc].user].commands = docs[doc].commands;
+
           }
       }
       connectBot();
@@ -126,9 +127,9 @@ module.exports = {
 
 
       for (var key in overlay_users){
-        channels.push("#"+key);
+        channels.push(""+key);
       }
-
+			console.log(channels)
       tmi_options = {
       	options:{
       		debug: true
@@ -162,5 +163,10 @@ module.exports = {
 
     overlay_users[user].commands[command].active = (option == 'true');
 
-  }
+  },
+	add_new_user: function(user, url, commands){
+		overlay_users[user] = {};
+		overlay_users[user].url = url;
+		overlay_users[user].commands = commands;
+	}
 }
